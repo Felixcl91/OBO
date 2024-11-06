@@ -35,7 +35,7 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
             if (!data.token.isNullOrBlank()) {
                 loginResponse = Resource.Success(data)
             } else {
-                Log.d("LoginViewModel", "Data NULL")
+                Log.d("LoginViewModel", "Data NULL ${data}")
             }
         }
     }

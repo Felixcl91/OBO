@@ -70,7 +70,7 @@ fun GetPositionQuestion(
                     .fillMaxWidth()
                     .padding(20.dp),
                 text = question,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.Normal,
                 fontSize = 17.sp,
                 color = Color.White,
                 textAlign = TextAlign.Start
@@ -101,12 +101,12 @@ fun GetPositionQuestion(
                 containerColor = GreenTop
             ),
         ) {
-            Text( /******QUESTION*******/
+            Text( /******ANSWER*******/
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp),
                 text = answer,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.Normal,
                 fontSize = 17.sp,
                 color = Color.White,
                 textAlign = TextAlign.Start

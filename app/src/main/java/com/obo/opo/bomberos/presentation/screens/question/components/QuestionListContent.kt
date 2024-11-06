@@ -1,5 +1,6 @@
 package com.obo.opo.bomberos.presentation.screens.question.components
 
+import android.text.Html
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.text.HtmlCompat
 import androidx.navigation.NavHostController
 import com.obo.opo.bomberos.domain.model.Question
 import com.obo.opo.bomberos.presentation.components.DefaultButton
@@ -35,8 +37,10 @@ fun QuestionListContent(
     ) {
 
         GetPositionQuestion(
-            question!!.question,
-            question!!.answer,
+            question = HtmlCompat.fromHtml(question!!.question, HtmlCompat.FROM_HTML_MODE_LEGACY).toString(),
+            answer = HtmlCompat.fromHtml(question!!.answer, HtmlCompat.FROM_HTML_MODE_LEGACY).toString(),
+            //question!!.question,
+            //question!!.answer,
             paddingValues,
             navController
         )

@@ -1,12 +1,16 @@
 package com.obo.opo.bomberos.presentation.screens.question
 
-import android.content.Context
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -19,6 +23,7 @@ import com.obo.opo.bomberos.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class QuestionViewModel @Inject constructor(
@@ -70,13 +75,14 @@ class QuestionViewModel @Inject constructor(
             currentIndex++
         } else {
             // MOSTRAR TEXTO SI YA NO HAY MAS QUESTIONS
-            //Toast.makeText(, "", Toast.LENGTH_LONG).show()
         }
     }
 
     //PREGUNTA ACTUAL
     fun currentQuestion(): Question? {
+
         return if (questionsResponse is Resource.Success) {
+
             (questionsResponse as Resource.Success).data[currentIndex]
         } else null
     }

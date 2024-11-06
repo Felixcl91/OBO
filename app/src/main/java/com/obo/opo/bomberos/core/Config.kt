@@ -3,7 +3,7 @@ package com.obo.opo.bomberos.core
 object Config {
 
     // URL
-    const val BASE_URL = "http://192.168.1.43:3000/"
+    const val BASE_URL = "http://192.168.131.214:3000/"
     // DATA PREFERENCES
     const val AUTH_PREFERENCE = "AUTH_PREF"
     // ID PARA ALMACENAR DATOS
