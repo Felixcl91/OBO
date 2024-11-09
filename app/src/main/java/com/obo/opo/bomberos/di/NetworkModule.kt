@@ -1,11 +1,11 @@
 package com.obo.opo.bomberos.di
 
 import com.obo.opo.bomberos.core.Config
-import com.obo.opo.bomberos.data.service.AuthService
-import com.obo.opo.bomberos.data.service.BlockService
-import com.obo.opo.bomberos.data.service.QuestionService
-import com.obo.opo.bomberos.data.service.TemaryService
-import com.obo.opo.bomberos.data.service.ThemeService
+import com.obo.opo.bomberos.data.dataSource.remote.service.AuthService
+import com.obo.opo.bomberos.data.dataSource.remote.service.BlockService
+import com.obo.opo.bomberos.data.dataSource.remote.service.QuestionService
+import com.obo.opo.bomberos.data.dataSource.remote.service.TemaryService
+import com.obo.opo.bomberos.data.dataSource.remote.service.ThemeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.obo.opo.bomberos.data.repository.dataSource
+package com.obo.opo.bomberos.data.dataSource.remote
 
 import com.obo.opo.bomberos.domain.model.AuthResponse
 import com.obo.opo.bomberos.domain.model.User

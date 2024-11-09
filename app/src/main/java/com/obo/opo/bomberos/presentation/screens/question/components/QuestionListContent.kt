@@ -1,6 +1,6 @@
 package com.obo.opo.bomberos.presentation.screens.question.components
 
-import android.text.Html
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,15 +8,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
 import androidx.navigation.NavHostController
 import com.obo.opo.bomberos.domain.model.Question
 import com.obo.opo.bomberos.presentation.components.DefaultButton
+import com.obo.opo.bomberos.presentation.navigation.screen.AuthScreen
 import com.obo.opo.bomberos.presentation.screens.question.QuestionViewModel
 import com.obo.opo.bomberos.presentation.ui.theme.BlueClain
 import com.obo.opo.bomberos.presentation.ui.theme.OBOTheme
@@ -28,6 +32,8 @@ fun QuestionListContent(
     navController: NavHostController,
     vm: QuestionViewModel
 ) {
+
+    val isLastQuestion by vm.isLastQuestion.observeAsState(false)
 
     Box(modifier = Modifier
         //.padding(paddingValues = paddingValues)
@@ -45,16 +51,37 @@ fun QuestionListContent(
             navController
         )
 
-        DefaultButton(
-            modifier = Modifier
-                .padding(30.dp)
-                .fillMaxWidth()
-                .align(alignment = Alignment.BottomCenter),
-            text = "Siguiente pregunta",
-            onclick = { vm.nextQuestion() },
-            color = BlueClain,
+        if (isLastQuestion) {
+            Toast.makeText(LocalContext.current, "Estás en la última pregunta", Toast.LENGTH_SHORT).show()
+            DefaultButton(
+                modifier = Modifier
+                    .padding(30.dp)
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.BottomCenter),
+                text = "Finalizar",
+                onclick = {
+                    // go to themes
+                    navController.popBackStack()
+                },
+                color = BlueClain,
 
-        )
+                )
+        } else {
+            DefaultButton(
+                modifier = Modifier
+                    .padding(30.dp)
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.BottomCenter),
+                text = "Siguiente pregunta",
+                onclick = {
+                    vm.nextQuestion()
+                },
+                color = BlueClain,
+
+                )
+        }
+
+
     }
 }
 @Preview(showBackground = true, showSystemUi = true)

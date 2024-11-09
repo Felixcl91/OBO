@@ -1,7 +1,6 @@
-package com.obo.opo.bomberos.data.repository.dataSourceImpl
+package com.obo.opo.bomberos.data.dataSource.remote
 
-import com.obo.opo.bomberos.data.repository.dataSource.AuthRemoteDataSource
-import com.obo.opo.bomberos.data.service.AuthService
+import com.obo.opo.bomberos.data.dataSource.remote.service.AuthService
 import com.obo.opo.bomberos.domain.model.AuthResponse
 import com.obo.opo.bomberos.domain.model.User
 import retrofit2.Response

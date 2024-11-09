@@ -1,7 +1,6 @@
-package com.obo.opo.bomberos.data.repository.dataSourceImpl
+package com.obo.opo.bomberos.data.dataSource.remote
 
-import com.obo.opo.bomberos.data.repository.dataSource.ThemeRemoteDataSource
-import com.obo.opo.bomberos.data.service.ThemeService
+import com.obo.opo.bomberos.data.dataSource.remote.service.ThemeService
 import com.obo.opo.bomberos.domain.model.Theme
 import retrofit2.Response
 

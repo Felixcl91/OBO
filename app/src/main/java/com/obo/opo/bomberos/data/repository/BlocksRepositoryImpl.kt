@@ -1,6 +1,6 @@
 package com.obo.opo.bomberos.data.repository
 
-import com.obo.opo.bomberos.data.repository.dataSource.BlockRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.BlockRemoteDataSource
 import com.obo.opo.bomberos.domain.model.Block
 import com.obo.opo.bomberos.domain.repository.BlockRepository
 import com.obo.opo.bomberos.domain.util.Resource

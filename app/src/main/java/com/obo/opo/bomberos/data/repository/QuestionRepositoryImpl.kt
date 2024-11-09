@@ -1,6 +1,6 @@
 package com.obo.opo.bomberos.data.repository
 
-import com.obo.opo.bomberos.data.repository.dataSource.QuestionRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.QuestionRemoteDataSource
 import com.obo.opo.bomberos.domain.model.Question
 import com.obo.opo.bomberos.domain.repository.QuestionRepository
 import com.obo.opo.bomberos.domain.util.Resource

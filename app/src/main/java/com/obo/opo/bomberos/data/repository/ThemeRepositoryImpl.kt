@@ -1,6 +1,6 @@
 package com.obo.opo.bomberos.data.repository
 
-import com.obo.opo.bomberos.data.repository.dataSource.ThemeRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.ThemeRemoteDataSource
 import com.obo.opo.bomberos.domain.model.Theme
 import com.obo.opo.bomberos.domain.repository.ThemeRepository
 import com.obo.opo.bomberos.domain.util.Resource

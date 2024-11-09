@@ -1,4 +1,4 @@
-package com.obo.opo.bomberos.data.service
+package com.obo.opo.bomberos.data.dataSource.remote.service
 
 import com.obo.opo.bomberos.domain.model.Question
 import retrofit2.Response

@@ -1,4 +1,4 @@
-package com.obo.opo.bomberos.data.datastore
+package com.obo.opo.bomberos.data.dataSource.local.datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

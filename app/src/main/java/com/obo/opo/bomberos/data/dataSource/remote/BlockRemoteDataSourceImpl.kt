@@ -1,7 +1,6 @@
-package com.obo.opo.bomberos.data.repository.dataSourceImpl
+package com.obo.opo.bomberos.data.dataSource.remote
 
-import com.obo.opo.bomberos.data.repository.dataSource.BlockRemoteDataSource
-import com.obo.opo.bomberos.data.service.BlockService
+import com.obo.opo.bomberos.data.dataSource.remote.service.BlockService
 import com.obo.opo.bomberos.domain.model.Block
 import retrofit2.Response
 

@@ -35,7 +35,7 @@ fun DefaultTopBar(
                 fontStyle = FontStyle.Normal
             )
         },
-        colors = TopAppBarDefaults.topAppBarColors(GreyAppBarLight),
+        colors = TopAppBarDefaults.topAppBarColors(GreenTop),
         navigationIcon = {
             if (upAvailable) {
                 IconButton(onClick = {navController?.popBackStack()} ) {

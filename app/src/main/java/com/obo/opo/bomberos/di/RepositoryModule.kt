@@ -5,12 +5,13 @@ import com.obo.opo.bomberos.data.repository.BlocksRepositoryImpl
 import com.obo.opo.bomberos.data.repository.QuestionRepositoryImpl
 import com.obo.opo.bomberos.data.repository.TemariesRepositoryImpl
 import com.obo.opo.bomberos.data.repository.ThemeRepositoryImpl
-import com.obo.opo.bomberos.data.repository.dataSource.AuthLocalDataSource
-import com.obo.opo.bomberos.data.repository.dataSource.AuthRemoteDataSource
-import com.obo.opo.bomberos.data.repository.dataSource.BlockRemoteDataSource
-import com.obo.opo.bomberos.data.repository.dataSource.QuestionRemoteDataSource
-import com.obo.opo.bomberos.data.repository.dataSource.TemaryRemoteDataSource
-import com.obo.opo.bomberos.data.repository.dataSource.ThemeRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.local.AuthLocalDataSource
+import com.obo.opo.bomberos.data.dataSource.local.TemariesLocalDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.AuthRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.BlockRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.QuestionRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.TemaryRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.ThemeRemoteDataSource
 import com.obo.opo.bomberos.domain.repository.AuthRepository
 import com.obo.opo.bomberos.domain.repository.BlockRepository
 import com.obo.opo.bomberos.domain.repository.QuestionRepository
@@ -34,9 +35,10 @@ object RepositoryModule {
 
     @Provides
     fun provideTemaryRemoteDataSource(
-        temaryRemoteDataSource: TemaryRemoteDataSource
+        temaryRemoteDataSource: TemaryRemoteDataSource,
+        temariesLocalDataSource: TemariesLocalDataSource
     ): TemaryRepository =
-        TemariesRepositoryImpl(temaryRemoteDataSource)
+        TemariesRepositoryImpl(temaryRemoteDataSource, temariesLocalDataSource)
 
     @Provides
     fun provideBlockRemoteDataSource(

@@ -1,7 +1,7 @@
 package com.obo.opo.bomberos.data.repository
 
-import com.obo.opo.bomberos.data.repository.dataSource.AuthLocalDataSource
-import com.obo.opo.bomberos.data.repository.dataSource.AuthRemoteDataSource
+import com.obo.opo.bomberos.data.dataSource.local.AuthLocalDataSource
+import com.obo.opo.bomberos.data.dataSource.remote.AuthRemoteDataSource
 import com.obo.opo.bomberos.domain.model.AuthResponse
 import com.obo.opo.bomberos.domain.model.User
 import com.obo.opo.bomberos.domain.repository.AuthRepository
