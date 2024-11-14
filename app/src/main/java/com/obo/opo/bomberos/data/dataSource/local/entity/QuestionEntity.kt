@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class QuestionEntity(
     @PrimaryKey(autoGenerate = true) var pk: Int = 0,
     @ColumnInfo(name = "id") var id: String = "",
-    @ColumnInfo(name = "question") var name: String = "",
-    @ColumnInfo(name = "answer") var description: String = "",
+    @ColumnInfo(name = "question") var question: String = "",
+    @ColumnInfo(name = "answer") var answer: String = "",
     @ColumnInfo(name = "relevance") var relevance: String = "",
     @ColumnInfo(name = "id_theme") var id_theme: String = ""
 )

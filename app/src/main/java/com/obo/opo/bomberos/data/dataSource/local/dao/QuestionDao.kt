@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.obo.opo.bomberos.data.dataSource.local.entity.QuestionEntity
-import com.obo.opo.bomberos.data.dataSource.local.entity.TemaryEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -19,6 +18,10 @@ interface QuestionDao {
 
     @Query("SELECT * FROM questions")
     fun getQuestions(): Flow<List<QuestionEntity>>
+
+    @Query("SELECT * FROM questions WHERE id_theme = :id_theme")
+    fun getQuestionsById(id_theme: String): Flow<List<QuestionEntity>>
+
 
 
 }

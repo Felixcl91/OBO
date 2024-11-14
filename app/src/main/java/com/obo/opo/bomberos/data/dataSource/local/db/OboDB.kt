@@ -6,11 +6,17 @@ import com.obo.opo.bomberos.data.dataSource.local.dao.BlockDao
 import com.obo.opo.bomberos.data.dataSource.local.dao.QuestionDao
 import com.obo.opo.bomberos.data.dataSource.local.dao.TemariesDao
 import com.obo.opo.bomberos.data.dataSource.local.dao.ThemeDao
+import com.obo.opo.bomberos.data.dataSource.local.entity.BlockEntity
+import com.obo.opo.bomberos.data.dataSource.local.entity.QuestionEntity
 import com.obo.opo.bomberos.data.dataSource.local.entity.TemaryEntity
+import com.obo.opo.bomberos.data.dataSource.local.entity.ThemeEntity
 
 @Database(
-    entities = [TemaryEntity::class],
-    version = 1,
+    entities = [TemaryEntity::class,
+               BlockEntity::class,
+               ThemeEntity::class,
+               QuestionEntity::class],
+    version = 2,
     exportSchema = false
 )
 abstract class OboDB: RoomDatabase() {

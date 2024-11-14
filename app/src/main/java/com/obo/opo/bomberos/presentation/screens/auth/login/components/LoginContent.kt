@@ -1,7 +1,6 @@
 package com.obo.opo.bomberos.presentation.screens.auth.login.components
 
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -48,7 +47,6 @@ import com.obo.opo.bomberos.presentation.screens.auth.login.LoginViewModel
 import com.obo.opo.bomberos.presentation.ui.theme.BlackTop
 import com.obo.opo.bomberos.presentation.ui.theme.BlueClain
 import com.obo.opo.bomberos.presentation.ui.theme.GreenTop
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun LoginContent(navController: NavHostController,paddingValues: PaddingValues, vm: LoginViewModel = hiltViewModel()) {

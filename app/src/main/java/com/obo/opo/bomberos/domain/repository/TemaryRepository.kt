@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface TemaryRepository {
 
     fun getTemaries(): Flow<Resource<List<Temary>>>
+
 }

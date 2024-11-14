@@ -1,11 +1,16 @@
 package com.obo.opo.bomberos.data.repository
 
 import android.util.Log
+import com.obo.opo.bomberos.data.dataSource.local.BlocksLocalDataSource
 import com.obo.opo.bomberos.data.dataSource.local.TemariesLocalDataSource
 import com.obo.opo.bomberos.data.dataSource.remote.TemaryRemoteDataSource
+import com.obo.opo.bomberos.data.mapper.toBlock
+import com.obo.opo.bomberos.data.mapper.toBlockEntity
 import com.obo.opo.bomberos.data.mapper.toTemary
 import com.obo.opo.bomberos.data.mapper.toTemaryEntity
+import com.obo.opo.bomberos.domain.model.Block
 import com.obo.opo.bomberos.domain.model.Temary
+import com.obo.opo.bomberos.domain.repository.BlockRepository
 import com.obo.opo.bomberos.domain.repository.TemaryRepository
 import com.obo.opo.bomberos.domain.util.Resource
 import com.obo.opo.bomberos.domain.util.ResponseToRequest
@@ -17,7 +22,8 @@ import kotlinx.coroutines.flow.flowOn
 class TemariesRepositoryImpl(
     private val remoteDataSource: TemaryRemoteDataSource,
     private val localDataSource: TemariesLocalDataSource
-): TemaryRepository {
+): TemaryRepository
+    {
 
     // TEMARIES
     override fun getTemaries(): Flow<Resource<List<Temary>>> = flow {
@@ -50,13 +56,5 @@ class TemariesRepositoryImpl(
             cancel()
         }*/
     }.flowOn(Dispatchers.IO) // Hilo
-
-    // BLOCKS
-
-
-    // THEMES
-
-    // QUESTIONS
-
 
 }

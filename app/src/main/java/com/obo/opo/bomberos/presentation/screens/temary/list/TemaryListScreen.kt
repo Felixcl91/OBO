@@ -6,6 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.obo.opo.bomberos.presentation.components.DefaultTopBar
+import com.obo.opo.bomberos.presentation.components.MainTopBar
 import com.obo.opo.bomberos.presentation.screens.temary.list.components.GetTemaries
 import com.obo.opo.bomberos.presentation.ui.theme.OBOTheme
 
@@ -14,7 +15,7 @@ fun TemaryListScreen(navHostController: NavHostController) {
 
     Scaffold(
         topBar = {
-            DefaultTopBar(
+            MainTopBar(
                 title = "Lista de temarios",
                 true,
                 navController = navHostController

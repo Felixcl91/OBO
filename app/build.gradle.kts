@@ -1,3 +1,4 @@
+
 import org.apache.tools.ant.util.JavaEnvUtils.VERSION_11
 
 plugins {
@@ -100,6 +101,9 @@ dependencies {
 
     // DATA STORE
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    // Font
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.7.5")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -1,6 +1,5 @@
 package com.obo.opo.bomberos.presentation.components
 
-import android.icu.text.CaseMap.Title
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,9 +10,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.compose.ui.text.googlefonts.Font
+import com.obo.opo.bomberos.R
+import com.obo.opo.bomberos.presentation.components.TextDefault.provider
 import com.obo.opo.bomberos.presentation.ui.theme.GreenTop
 import com.obo.opo.bomberos.presentation.ui.theme.GreyAppBarLight
 import com.obo.opo.bomberos.presentation.ui.theme.PurpleGrey40
@@ -26,13 +30,20 @@ fun DefaultTopBar(
     upAvailable: Boolean = false,
     navController: NavHostController? = null
 ){
+    val fontName = GoogleFont("Comic Sans")
+
+    val fontFamily = FontFamily(
+        Font(googleFont = fontName, fontProvider = provider)
+    )
+
     TopAppBar(
         title = {
             Text(
-                color = Color.Black,
-                text = "OBO",
+                color = Color.White,
+                //text = "OBO",
                 fontSize = 19.sp,
-                fontStyle = FontStyle.Normal
+                fontFamily = fontFamily, text = "OBO"
+                //fontStyle = FontStyle.Normal
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(GreenTop),
@@ -42,7 +53,7 @@ fun DefaultTopBar(
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "",
-                        tint = Color.Black
+                        tint = Color.White
                     )
                 }
             }

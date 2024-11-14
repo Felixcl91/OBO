@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.obo.opo.bomberos.data.dataSource.local.entity.TemaryEntity
 import com.obo.opo.bomberos.data.dataSource.local.entity.ThemeEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -19,6 +18,9 @@ interface ThemeDao {
 
     @Query("SELECT * FROM themes")
     fun getThemes(): Flow<List<ThemeEntity>>
+
+    @Query("SELECT * FROM themes WHERE id_block = :id_block")
+    fun getThemesById(id_block: String): Flow<List<ThemeEntity>>
 
 
 }

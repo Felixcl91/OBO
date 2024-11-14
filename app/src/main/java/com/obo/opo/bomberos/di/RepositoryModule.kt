@@ -6,7 +6,10 @@ import com.obo.opo.bomberos.data.repository.QuestionRepositoryImpl
 import com.obo.opo.bomberos.data.repository.TemariesRepositoryImpl
 import com.obo.opo.bomberos.data.repository.ThemeRepositoryImpl
 import com.obo.opo.bomberos.data.dataSource.local.AuthLocalDataSource
+import com.obo.opo.bomberos.data.dataSource.local.BlocksLocalDataSource
+import com.obo.opo.bomberos.data.dataSource.local.QuestionsLocalDataSource
 import com.obo.opo.bomberos.data.dataSource.local.TemariesLocalDataSource
+import com.obo.opo.bomberos.data.dataSource.local.ThemesLocalDataSource
 import com.obo.opo.bomberos.data.dataSource.remote.AuthRemoteDataSource
 import com.obo.opo.bomberos.data.dataSource.remote.BlockRemoteDataSource
 import com.obo.opo.bomberos.data.dataSource.remote.QuestionRemoteDataSource
@@ -42,18 +45,22 @@ object RepositoryModule {
 
     @Provides
     fun provideBlockRemoteDataSource(
-        blockRemoteDataSource: BlockRemoteDataSource
+        blockRemoteDataSource: BlockRemoteDataSource,
+        blocksLocalDataSource: BlocksLocalDataSource
     ): BlockRepository =
-        BlocksRepositoryImpl(blockRemoteDataSource)
+        BlocksRepositoryImpl(blockRemoteDataSource, blocksLocalDataSource)
 
     @Provides
     fun provideThemeRemoteDataSource(
-        themeRemoteDataSource: ThemeRemoteDataSource
+        themeRemoteDataSource: ThemeRemoteDataSource,
+        themesLocalDataSource: ThemesLocalDataSource
     ): ThemeRepository =
-        ThemeRepositoryImpl(themeRemoteDataSource)
+        ThemeRepositoryImpl(themeRemoteDataSource, themesLocalDataSource)
 
     @Provides
     fun provideQuestionRemoteDataSource(
-        questionRemoteDataSource: QuestionRemoteDataSource
-    ): QuestionRepository = QuestionRepositoryImpl(questionRemoteDataSource)
+        questionRemoteDataSource: QuestionRemoteDataSource,
+        questionsLocalDataSource: QuestionsLocalDataSource
+    ): QuestionRepository =
+        QuestionRepositoryImpl(questionRemoteDataSource, questionsLocalDataSource)
 }

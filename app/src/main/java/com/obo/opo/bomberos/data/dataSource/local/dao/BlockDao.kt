@@ -20,5 +20,9 @@ interface BlockDao {
     @Query("SELECT * FROM blocks")
     fun getBlocks(): Flow<List<BlockEntity>>
 
+    @Query("SELECT * FROM blocks WHERE id_temary = :id_temary")
+    fun getBlocksById(id_temary: String): Flow<List<BlockEntity>>
+
+
 
 }
