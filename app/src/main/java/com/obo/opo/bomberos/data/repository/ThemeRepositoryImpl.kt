@@ -23,14 +23,14 @@ class ThemeRepositoryImpl(
     private val localDataSource: ThemesLocalDataSource
 ): ThemeRepository {
 
-    override fun getThemes(): Flow<Resource<List<Theme>>> = callbackFlow {
-        trySend(ResponseToRequest.send(remoteDataSource.findAll()))
+    override fun getThemes(token: String): Flow<Resource<List<Theme>>> = callbackFlow {
+        trySend(ResponseToRequest.send(remoteDataSource.findAll(token)))
         awaitClose {
             cancel()
         }
     }
 
-    override fun findByBlock(idBlock: String): Flow<Resource<List<Theme>>> = flow {
+    override fun findByBlock(token: String, idBlock: String): Flow<Resource<List<Theme>>> = flow {
 
         localDataSource.getThemeById(idBlock).collect() {
             it.run {
@@ -38,7 +38,7 @@ class ThemeRepositoryImpl(
                     Log.d("ThemeRepositoryImpl", "DATA Local: ${this}")
                     emit(Resource.Success(this.map { themeEntity ->  themeEntity.toTheme()}))
                 } else {
-                    ResponseToRequest.send(remoteDataSource.findByBlock(idBlock)).run {
+                    ResponseToRequest.send(remoteDataSource.findByBlock(token, idBlock)).run {
                         when(this) {
                             is Resource.Success -> {
                                 Log.d("ThemeRepositoryImpl", "DATA Remote: ${this}")

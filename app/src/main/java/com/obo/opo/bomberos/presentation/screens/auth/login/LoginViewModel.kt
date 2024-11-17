@@ -26,7 +26,7 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
         private set
 
     init {
-        getSessionData()
+        //getSessionData()
     }
 
     // LLAMAMOS A ESTA FUNCION CUANDO EL LOGINVIEWMODEL SEA INVOCADO
@@ -50,6 +50,8 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
             val result = authUseCase.login(state.email, state.password) //RETORNA RESP
             loginResponse = result // EXITOSA / ERROR
             Log.d("LoginViewModel", "Response: ${loginResponse.toString()}")
+        } else {
+            Log.d("LoginViewModel", "Response Error: ${loginResponse.toString()}")
         }
 
     }

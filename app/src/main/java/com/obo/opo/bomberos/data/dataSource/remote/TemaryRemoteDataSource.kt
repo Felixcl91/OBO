@@ -5,5 +5,5 @@ import retrofit2.Response
 
 interface TemaryRemoteDataSource {
 
-    suspend fun getTemaries(): Response<List<Temary>>
+    suspend fun getTemaries(token: String): Response<List<Temary>>
 }

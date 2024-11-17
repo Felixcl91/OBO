@@ -4,5 +4,6 @@ import com.obo.opo.bomberos.domain.repository.QuestionRepository
 
 class FindByThemeUseCase(private val repository: QuestionRepository) {
 
-    suspend operator fun invoke(idTheme: String) = repository.findByTheme(idTheme)
+    suspend operator fun invoke(token: String, idTheme: String) =
+        repository.findByTheme(token, idTheme)
 }

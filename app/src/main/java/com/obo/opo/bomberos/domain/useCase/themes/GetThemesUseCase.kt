@@ -4,5 +4,5 @@ import com.obo.opo.bomberos.domain.repository.ThemeRepository
 
 class GetThemesUseCase(private val repository: ThemeRepository) {
 
-    suspend operator fun invoke() = repository.getThemes()
+    suspend operator fun invoke(token: String) = repository.getThemes(token)
 }

@@ -15,13 +15,18 @@ import com.obo.opo.bomberos.presentation.screens.temary.list.TemaryListScreen
 import com.obo.opo.bomberos.presentation.screens.block.BlockListScreen
 import com.obo.opo.bomberos.presentation.screens.block.components.BlocksListContent
 import com.obo.opo.bomberos.presentation.screens.question.QuestionListScreen
+import com.obo.opo.bomberos.presentation.screens.splash.SplashScreen
 import com.obo.opo.bomberos.presentation.screens.theme.ThemeListScreen
 
 fun NavGraphBuilder.AuthNavGraph(navController: NavHostController){
+
     navigation(
         route = Graph.AUTH,
-        startDestination = AuthScreen.Login.route
+        startDestination = AuthScreen.Splash.route
     ) {
+        composable(route = AuthScreen.Splash.route) {
+            SplashScreen(navController)
+        }
         composable(route = AuthScreen.Login.route) {
             LoginScreen(navController)
         }

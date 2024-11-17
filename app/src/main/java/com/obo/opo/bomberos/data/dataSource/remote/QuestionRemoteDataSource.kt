@@ -5,7 +5,7 @@ import retrofit2.Response
 
 interface QuestionRemoteDataSource {
 
-    suspend fun findAll(): Response<List<Question>>
+    suspend fun findAll(token: String): Response<List<Question>>
 
-    suspend fun findByTheme(idTheme: String): Response<List<Question>>
+    suspend fun findByTheme(token: String, idTheme: String): Response<List<Question>>
 }

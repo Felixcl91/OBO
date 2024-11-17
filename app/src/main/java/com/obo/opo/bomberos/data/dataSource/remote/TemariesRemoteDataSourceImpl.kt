@@ -9,9 +9,8 @@ class TemariesRemoteDataSourceImpl(
     ):
     TemaryRemoteDataSource {
 
-    override suspend fun getTemaries(): Response<List<Temary>> = temaryService.getTemaries(
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IkNhdGFwbGFzbWEiLCJpYXQiOjE3MjkwOTE1ODYsImV4cCI6MTczMTY4MzU4Nn0.gw17GpHz_ZT8GnsiTfnc2F1VsQ1hTQ-4R63VJUl2ApA"
-    )
+    override suspend fun getTemaries(token: String): Response<List<Temary>> =
+        temaryService.getTemaries(token)
 
 
 }

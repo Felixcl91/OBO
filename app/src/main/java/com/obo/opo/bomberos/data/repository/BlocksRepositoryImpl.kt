@@ -24,14 +24,14 @@ class BlocksRepositoryImpl(
     private val localDataSource: BlocksLocalDataSource
 ): BlockRepository {
 
-    override fun getBlocks(): Flow<Resource<List<Block>>> = callbackFlow {
-        trySend(ResponseToRequest.send(remoteDataSource.findAll()))
+    override fun getBlocks(token: String): Flow<Resource<List<Block>>> = callbackFlow {
+        trySend(ResponseToRequest.send(remoteDataSource.findAll(token)))
         awaitClose {
             cancel()
         }
     }
 
-    override fun findByTemary(idTemary: String): Flow<Resource<List<Block>>> = flow {
+    override fun findByTemary(token: String, idTemary: String): Flow<Resource<List<Block>>> = flow {
 
         localDataSource.getBlockById(idTemary).collect() {
             it.run {
@@ -40,7 +40,7 @@ class BlocksRepositoryImpl(
                     // MAPEAMOS DATA A REMOTE
                     emit(Resource.Success(this.map { blockEntity -> blockEntity.toBlock() }))
                 } else {
-                    ResponseToRequest.send(remoteDataSource.findByTemary(idTemary)).run {
+                    ResponseToRequest.send(remoteDataSource.findByTemary(token, idTemary)).run {
                         when(this) {
                             is Resource.Success -> {
                                 Log.d("BlocksRepositoryImpl", "DATA REMOTE: ${this}")

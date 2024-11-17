@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface QuestionRepository {
 
-    fun getQuestions(): Flow<Resource<List<Question>>>
+    fun getQuestions(token: String): Flow<Resource<List<Question>>>
 
-    fun findByTheme(idTheme: String): Flow<Resource<List<Question>>>
+    fun findByTheme(token: String, idTheme: String): Flow<Resource<List<Question>>>
 }

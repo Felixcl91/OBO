@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ThemeRepository {
 
-    fun getThemes(): Flow<Resource<List<Theme>>>
+    fun getThemes(token: String): Flow<Resource<List<Theme>>>
 
-    fun findByBlock(idBlock: String): Flow<Resource<List<Theme>>>
+    fun findByBlock(token: String, idBlock: String): Flow<Resource<List<Theme>>>
 }

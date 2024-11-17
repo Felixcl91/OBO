@@ -4,6 +4,6 @@ import com.obo.opo.bomberos.domain.repository.TemaryRepository
 
 class GetTemariesUseCase(private val repository: TemaryRepository) {
 
-    suspend operator fun invoke() = repository.getTemaries()
+    suspend operator fun invoke(token: String) = repository.getTemaries(token)
 
 }

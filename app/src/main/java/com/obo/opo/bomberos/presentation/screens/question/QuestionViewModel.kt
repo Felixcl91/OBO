@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.obo.opo.bomberos.domain.model.Question
 import com.obo.opo.bomberos.domain.model.Theme
+import com.obo.opo.bomberos.domain.useCase.auth.AuthUseCase
 import com.obo.opo.bomberos.domain.useCase.questions.QuestionsUseCase
 import com.obo.opo.bomberos.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,8 +23,11 @@ import javax.inject.Inject
 @HiltViewModel
 class QuestionViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val questionsUseCase: QuestionsUseCase
+    private val questionsUseCase: QuestionsUseCase,
+    private val authUseCase: AuthUseCase
 ) : ViewModel() {
+
+    var errorMessage by mutableStateOf("")
 
     // theme
     var data = savedStateHandle.get<String>("theme")
@@ -48,18 +53,40 @@ class QuestionViewModel @Inject constructor(
     // function without id THEME
     fun getQuestions() = viewModelScope.launch {
         questionsResponse = Resource.Loading
-        questionsUseCase.getQuestionsUseCase().collect() {
-            questionsResponse = it
-            Log.d("QuestionViewModel", "DATA: $questionsResponse")
+        authUseCase.getSessionData().collect() { data ->
+            if (!data.token.isNullOrBlank()) {
+                Log.d("QuestionViewModel", "Data Token Response: ${data.token}")
+                questionsUseCase.getQuestionsUseCase(data.token).collect() {
+                    questionsResponse = it
+                    Log.d("QuestionViewModel", "DATA: $questionsResponse")
+                }
+            } else {
+                Log.d("QuestionViewModel", "Data Token Error: ${data.token}")
+            }
         }
     }
 
     // function with id THEME
     fun findByTheme() = viewModelScope.launch {
         questionsResponse = Resource.Loading // loading
-        questionsUseCase.findByThemeUseCase(theme.id!!).collect() { // SUCCESS
-            questionsResponse = it
-            Log.d("QuestionViewModel", "DATA SUCCES: $questionsResponse")
+        authUseCase.getSessionData().collect() { data ->
+            if (!data.token.isNullOrBlank()) {
+                Log.d("QuestionViewModel", "Data Token Response: ${data.token}")
+                questionsUseCase.findByThemeUseCase(data.token, theme.id!!).collect() { // SUCCESS
+
+                    if ((it as Resource.Success).data.isEmpty()) {
+                        Log.d("QuestionViewModel", "DATA FIND EMPTY: $questionsResponse")
+                        questionsResponse = Resource.Failure("Este tema no tiene preguntas disponibles")
+                    } else {
+                        questionsResponse = it
+                        questionsResponse as Resource.Success
+                        Log.d("QuestionViewModel", "DATA FIND: $questionsResponse")
+                    }
+
+                }
+            } else {
+                Log.d("QuestionViewModel", "Data Token Error: ${data.token}")
+            }
         }
     }
 
@@ -77,7 +104,6 @@ class QuestionViewModel @Inject constructor(
     fun currentQuestion(): Question? {
 
         return if (questionsResponse is Resource.Success) {
-
             (questionsResponse as Resource.Success).data[currentIndex]
         } else null
     }

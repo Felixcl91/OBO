@@ -1,6 +1,7 @@
 package com.obo.opo.bomberos.domain.model
 
 import com.google.gson.Gson
+import dagger.Provides
 
 data class AuthResponse(
     val user: User? = null,

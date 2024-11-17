@@ -26,7 +26,7 @@ class TemariesRepositoryImpl(
     {
 
     // TEMARIES
-    override fun getTemaries(): Flow<Resource<List<Temary>>> = flow {
+    override fun getTemaries(token: String): Flow<Resource<List<Temary>>> = flow {
 
         // GET TEMARIES DE LA BASE DE DATOS LOCAL SI NO ESTA VACIA. SINO INSERTA
         localDataSource.getTemaries().collect() {
@@ -36,7 +36,7 @@ class TemariesRepositoryImpl(
                     // MAPEAMOS DATA A REMOTE
                     emit(Resource.Success(this.map { temaryEntity -> temaryEntity.toTemary() }))
                 } else {
-                    ResponseToRequest.send(remoteDataSource.getTemaries()).run {
+                    ResponseToRequest.send(remoteDataSource.getTemaries(token)).run {
                         when(this) {
                             is Resource.Success -> {
                                 Log.d("TemariesRepositoryImpl", "DATA REMOTE: ${this}")

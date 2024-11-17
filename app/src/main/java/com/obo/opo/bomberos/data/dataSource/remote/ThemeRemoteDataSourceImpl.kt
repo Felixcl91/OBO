@@ -7,15 +7,10 @@ import retrofit2.Response
 class ThemeRemoteDataSourceImpl(private val themeService: ThemeService): ThemeRemoteDataSource {
 
 
-    override suspend fun findAll(): Response<List<Theme>> = themeService.getThemes(
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IkNhdGFwbGFzbWEiLCJpYXQiOjE3MjkwOTE1ODYsImV4cCI6MTczMTY4MzU4Nn0.gw17GpHz_ZT8GnsiTfnc2F1VsQ1hTQ-4R63VJUl2ApA"
-    )
+    override suspend fun findAll(token: String): Response<List<Theme>> =
+        themeService.getThemes(token)
 
-    override suspend fun findByBlock(idBlock: String): Response<List<Theme>> =
-        themeService.findByBlock(
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IkNhdGFwbGFzbWEiLCJpYXQiOjE3MjkwOTE1ODYsImV4cCI6MTczMTY4MzU4Nn0.gw17GpHz_ZT8GnsiTfnc2F1VsQ1hTQ-4R63VJUl2ApA",
-            idBlock
-
-        )
+    override suspend fun findByBlock(token: String, idBlock: String): Response<List<Theme>> =
+        themeService.findByBlock(token, idBlock)
 
 }

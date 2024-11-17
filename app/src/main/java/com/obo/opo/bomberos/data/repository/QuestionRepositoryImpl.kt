@@ -22,14 +22,14 @@ class QuestionRepositoryImpl(
     private  val localDataSource: QuestionsLocalDataSource
 ): QuestionRepository {
 
-    override fun getQuestions(): Flow<Resource<List<Question>>> = callbackFlow {
-        trySend(ResponseToRequest.send(remoteDataSource.findAll()))
+    override fun getQuestions(token: String): Flow<Resource<List<Question>>> = callbackFlow {
+        trySend(ResponseToRequest.send(remoteDataSource.findAll(token)))
         awaitClose {
             cancel()
         }
     }
 
-    override fun findByTheme(idTheme: String): Flow<Resource<List<Question>>> = flow {
+    override fun findByTheme(token: String, idTheme: String): Flow<Resource<List<Question>>> = flow {
 
         localDataSource.getQuestionsById(idTheme).collect() {
             it.run {
@@ -37,7 +37,7 @@ class QuestionRepositoryImpl(
                     Log.d("QuestionRepositoryImpl", "DATA Local: ${this}")
                     emit(Resource.Success(this.map { questionEntity -> questionEntity.toQuestion() }))
                 } else {
-                    ResponseToRequest.send(remoteDataSource.findByTheme(idTheme)).run {
+                    ResponseToRequest.send(remoteDataSource.findByTheme(token, idTheme)).run {
                         when (this) {
                             is Resource.Success -> {
                                 Log.d("QuestionRepositoryImpl", "DATA Remote: ${this}")

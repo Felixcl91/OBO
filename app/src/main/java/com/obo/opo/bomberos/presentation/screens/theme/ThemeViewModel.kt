@@ -11,12 +11,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewModelScope
+import com.obo.opo.bomberos.domain.useCase.auth.AuthUseCase
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ThemeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val themesUseCase: ThemesUseCase)
+    private val themesUseCase: ThemesUseCase,
+    private val authUseCase: AuthUseCase
+    )
     : ViewModel() {
 
     var data = savedStateHandle.get<String>("block")
@@ -35,18 +38,30 @@ class ThemeViewModel @Inject constructor(
     // function without id block
     fun getThemes() = viewModelScope.launch {
         themesResponse = Resource.Loading
-        themesUseCase.getThemesUseCase().collect() {
-            themesResponse = it
-            Log.d("ThemeViewModel", "DATA: $themesResponse")
+        authUseCase.getSessionData().collect() { data ->
+            if (!data.token.isNullOrBlank()) {
+                Log.d("ThemeViewModel", "Data Token Response: ${data.token}")
+                themesUseCase.getThemesUseCase(data.token).collect() {
+                    themesResponse = it
+                    Log.d("ThemeViewModel", "DATA: $themesResponse")
+                }
+            } else {
+                Log.d("ThemeViewModel", "Data Token Error: ${data.token}")
+            }
         }
     }
 
     // function with id Block
     fun findByBlock() = viewModelScope.launch {
         themesResponse = Resource.Loading // loading
-        themesUseCase.findByBlockUseCase(block.id!!).collect() { // SUCCESS
-            themesResponse = it
-            Log.d("ThemeViewModel", "DATA SUCCES: $themesResponse")
+        authUseCase.getSessionData().collect() { data ->
+            if (!data.token.isNullOrBlank()) {
+                Log.d("ThemeViewModel", "Data Token Response: ${data.token}")
+                themesUseCase.findByBlockUseCase(data.token, block.id!!).collect() { // SUCCESS
+                    themesResponse = it
+                    Log.d("ThemeViewModel", "DATA SUCCES: $themesResponse")
+                }
+            }
         }
     }
 

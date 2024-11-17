@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface BlockRepository {
 
-    fun getBlocks(): Flow<Resource<List<Block>>>
+    fun getBlocks(token: String): Flow<Resource<List<Block>>>
 
-    fun findByTemary(idTemary: String): Flow<Resource<List<Block>>>
+    fun findByTemary(token: String, idTemary: String): Flow<Resource<List<Block>>>
 }

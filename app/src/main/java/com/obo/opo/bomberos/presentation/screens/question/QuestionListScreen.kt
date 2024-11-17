@@ -37,7 +37,7 @@ fun QuestionListScreen(
 
         GetQuestions(
             paddingValues,
-            navHostController = navController
+            navController = navController
         )
     }
 }

@@ -5,7 +5,7 @@ import retrofit2.Response
 
 interface ThemeRemoteDataSource {
 
-    suspend fun findAll(): Response<List<Theme>>
+    suspend fun findAll(token: String): Response<List<Theme>>
 
-    suspend fun findByBlock(idBlock: String): Response<List<Theme>>
+    suspend fun findByBlock(token: String, idBlock: String): Response<List<Theme>>
 }

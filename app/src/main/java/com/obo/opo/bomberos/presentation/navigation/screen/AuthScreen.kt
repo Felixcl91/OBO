@@ -5,6 +5,7 @@ import com.obo.opo.bomberos.domain.model.Block
 
 sealed class AuthScreen(val route: String) {
 
+    object Splash: AuthScreen("splash")
     object Login: AuthScreen("login")
     object Register: AuthScreen("register")
     object Home: AuthScreen("home")

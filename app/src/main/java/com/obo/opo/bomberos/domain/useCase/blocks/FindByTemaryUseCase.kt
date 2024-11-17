@@ -4,5 +4,6 @@ import com.obo.opo.bomberos.domain.repository.BlockRepository
 
 class FindByTemaryUseCase(private val repository: BlockRepository) {
 
-    suspend operator fun invoke(idTemary: String) = repository.findByTemary(idTemary)
+    suspend operator fun invoke(token: String, idTemary: String) =
+        repository.findByTemary(token, idTemary)
 }

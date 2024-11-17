@@ -9,7 +9,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.obo.opo.bomberos.domain.util.Resource
 import com.obo.opo.bomberos.presentation.components.ProgressBar
-import com.obo.opo.bomberos.presentation.screens.block.components.BlocksListContent
 import com.obo.opo.bomberos.presentation.screens.theme.ThemeViewModel
 
 @Composable
@@ -18,14 +17,21 @@ fun GetThemes(
     vm: ThemeViewModel = hiltViewModel(),
     navHostController: NavHostController) {
 
+    val context = LocalContext.current
+
     when(val response = vm.themesResponse) {
         Resource.Loading -> {
             ProgressBar()
         }
 
         is Resource.Success -> {
-            ThemesListContent(themes = response.data, paddingValues, navHostController)
-            Log.d("ThemesListContent", "DATA: ${response.data}")
+            if (!response.data.isNullOrEmpty()) {
+                ThemesListContent(themes = response.data, paddingValues, navHostController)
+                Log.d("ThemesListContent", "DATA: ${response.data}")
+            } else {
+                Toast.makeText(context, "Sin Temas", Toast.LENGTH_LONG).show()
+            }
+
         }
 
         is Resource.Failure -> {
