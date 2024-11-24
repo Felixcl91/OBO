@@ -100,12 +100,25 @@ class QuestionViewModel @Inject constructor(
         }
     }
 
+    // PREGUNTA ANTERIOR
+    fun onBackQuestion() {
+        if (currentIndex > 0) {
+            currentIndex --
+        }
+    }
+
     //PREGUNTA ACTUAL
     fun currentQuestion(): Question? {
 
         return if (questionsResponse is Resource.Success) {
             (questionsResponse as Resource.Success).data[currentIndex]
         } else null
+    }
+
+    fun countQuestions(): Int {
+
+        return (questionsResponse as Resource.Success).data.count()
+
     }
 
 }
