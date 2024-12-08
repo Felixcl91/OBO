@@ -35,7 +35,7 @@ fun TemaryListContent(
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
         .fillMaxSize()
-        .background(Color.White)
+        .background(Color.Black)
         //.clickable { navController.navigate(route = AuthScreen.Blocks.route) }
         //.clickable { navController.navigate(route = AuthScreen.FindByTemary.passTemary(temary.toJson())) }
     ) {
@@ -53,7 +53,7 @@ fun TemaryListContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color.White)
+                .background(Color.Black)
         ) {
             items(
                 items = temaries

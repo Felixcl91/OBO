@@ -14,6 +14,7 @@ import com.obo.opo.bomberos.domain.useCase.auth.SaveSessionUseCase
 import com.obo.opo.bomberos.domain.useCase.blocks.BlocksUseCase
 import com.obo.opo.bomberos.domain.useCase.blocks.FindByTemaryUseCase
 import com.obo.opo.bomberos.domain.useCase.blocks.GetBlocksUseCase
+import com.obo.opo.bomberos.domain.useCase.questions.DivideQuestionsUseCase
 import com.obo.opo.bomberos.domain.useCase.questions.FindByThemeUseCase
 import com.obo.opo.bomberos.domain.useCase.questions.GetQuestionsUseCase
 import com.obo.opo.bomberos.domain.useCase.questions.QuestionsUseCase
@@ -58,7 +59,8 @@ object UseCaseModule {
     @Provides
     fun provideQuestionsUseCase(questionRepository: QuestionRepository) = QuestionsUseCase(
         getQuestionsUseCase = GetQuestionsUseCase(questionRepository),
-        findByThemeUseCase = FindByThemeUseCase(questionRepository)
+        findByThemeUseCase = FindByThemeUseCase(questionRepository),
+        divideQuestionsUseCase = DivideQuestionsUseCase()
     )
 
 }

@@ -63,7 +63,10 @@ fun GetPositionQuestion(
     Log.d("GetPositionQuestion", "ANSWER NEW: $hasNewResponse")
 
     Column(
-        modifier = Modifier.fillMaxWidth().padding(20.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
+            .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -83,8 +86,7 @@ fun GetPositionQuestion(
             Text(
                 modifier = Modifier
                     .padding(start = 30.dp, top = 70.dp),
-                text = "${positionQuestions}/${countQuestions
-                }",
+                text = "$positionQuestions de $countQuestions",
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = BlueClain

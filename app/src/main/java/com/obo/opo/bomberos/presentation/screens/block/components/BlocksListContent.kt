@@ -30,7 +30,7 @@ fun BlocksListContent(
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
         .fillMaxSize()
-        .background(Color.White)
+        .background(Color.Black)
     ) {
         Text(
             modifier = Modifier
@@ -46,7 +46,7 @@ fun BlocksListContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color.White)
+                .background(Color.Black)
         ) {
             items(
                 items = blocks

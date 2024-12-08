@@ -97,10 +97,10 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
 
     //ROOM
-    implementation("androidx.room:room-runtime:2.5.0")
+    /*implementation("androidx.room:room-runtime:2.5.0")
     implementation("androidx.room:room-ktx:2.5.0")
     annotationProcessor("androidx.room:room-compiler:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")*/
 
     // DATA STORE
     implementation("androidx.datastore:datastore-preferences:1.1.1")

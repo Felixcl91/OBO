@@ -1,10 +1,15 @@
 package com.obo.opo.bomberos.presentation.components
 
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -29,16 +34,19 @@ fun DialogQuestions(
             )
         },
         text = {
-            Text(text = message,
+            Text(modifier = Modifier.verticalScroll(rememberScrollState()),
+                text = message,
                 fontSize = 19.sp,
-                textAlign = TextAlign.Start
+                textAlign = TextAlign.Start,
+                color = Color.White
             )
         },
         confirmButton = {
             TextButton(
                 onClick = onDismiss) {
-                Text(text = confirmButtonText, color = GreenTop)
+                Text(text = confirmButtonText, color = BlueClain)
             }
-        }
+        },
+        containerColor = GreenTop
     )
 }

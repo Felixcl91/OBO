@@ -22,7 +22,8 @@ fun GetQuestions(
 
     val context = LocalContext.current
 
-    when(val response = vm.questionsResponse) {
+        when(val response = vm.questionsResponse) {
+
         Resource.Loading -> {
             ProgressBar()
             Log.d("GetQuestions", "ESTOY EN PROGRESS")

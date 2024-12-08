@@ -47,7 +47,7 @@ fun QuestionListContent(
     Box(modifier = Modifier
         //.padding(paddingValues = paddingValues)
         .fillMaxSize()
-        .background(Color.White)
+        .background(Color.Black)
         .padding(bottom = 20.dp)
     ) {
 

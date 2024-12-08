@@ -38,7 +38,7 @@ fun ThemesListItem(
             .padding(start = 20.dp, end = 20.dp, top = 15.dp)
             .height(50.dp)
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.Black)
             .clickable {
                 Log.d("ThemesListItem", "ITEM SELECCIONADO: ${theme.toJson()}")
                 //navController.navigate(route = AuthScreen.Questions.route)
@@ -58,7 +58,7 @@ fun ThemesListItem(
             ) {
                 Text(
                     text = theme.name,
-                    color = BlueClain,
+                    color = Color.White,
                     fontSize = 17.sp
                 )
             }
@@ -72,7 +72,8 @@ fun ThemesListItem(
                 Icon(
                     modifier = Modifier.height(20.dp).width(20.dp),
                     painter = painterResource(id = R.drawable.right_black),
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = GreenTop
 
                 )
                 /*Image(

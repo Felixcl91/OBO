@@ -42,7 +42,7 @@ fun BlocksListItem(
             .padding(start = 20.dp, end = 20.dp, top = 15.dp)
             .height(50.dp)
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.Black)
             .clickable {
                 Log.d("BlocksListItem", "ITEM SELECCIONADO: ${block.toJson()}")
                 //navController.navigate(route = AuthScreen.Themes.route)

@@ -43,7 +43,7 @@ fun TemariesListItem(
             .padding(start = 20.dp, end = 20.dp, top = 15.dp)
             .height(50.dp)
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.Black)
             .clickable {
                 Log.d("TemariesListItem", "ITEM SELECCIONADO: ${temary.toJson()}")
                 navController.navigate(route = AuthScreen.FindByTemary.passTemary(temary.toJson()))}
@@ -81,7 +81,8 @@ fun TemariesListItem(
                 Icon(
                     modifier = Modifier.height(20.dp).width(20.dp),
                     painter = painterResource(id = R.drawable.right_black),
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = GreenTop
 
                 )
                 /*Image(

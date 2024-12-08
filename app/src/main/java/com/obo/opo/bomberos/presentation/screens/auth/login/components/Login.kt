@@ -31,11 +31,13 @@ fun Login(navHostController: NavHostController, vm: LoginViewModel = hiltViewMod
             }
         }
         is Resource.Failure -> {
+            Log.d("Login", "DATA DE LOGIN FAILURE ${response.message}")
             Toast.makeText(LocalContext.current, response.message ?: "Error desconocido", Toast.LENGTH_SHORT).show()
         }
 
         else -> {
             if (response != null) {
+                Log.d("Login", "DATA DE LOGIN ERROR DESCONOCIDO")
                 Toast.makeText(LocalContext.current, "Hubo un error desconocido", Toast.LENGTH_SHORT).show()
             }
         }

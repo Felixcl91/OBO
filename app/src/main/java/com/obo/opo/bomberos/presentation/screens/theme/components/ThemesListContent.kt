@@ -29,7 +29,7 @@ fun ThemesListContent(
     Box(modifier = Modifier
         .padding(paddingValues = paddingValues)
         .fillMaxSize()
-        .background(Color.White)
+        .background(Color.Black)
         .padding(bottom = 20.dp)
     ) {
         Text(
@@ -46,7 +46,7 @@ fun ThemesListContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color.White)
+                .background(Color.Black)
         ) {
             items(
                 items = themes

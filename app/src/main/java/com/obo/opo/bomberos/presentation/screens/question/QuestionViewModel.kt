@@ -1,6 +1,8 @@
 package com.obo.opo.bomberos.presentation.screens.question
 
 import android.util.Log
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -44,6 +46,28 @@ class QuestionViewModel @Inject constructor(
     private val _isLastQuestion = MutableLiveData(false)
     val isLastQuestion: LiveData<Boolean> get() = _isLastQuestion
 
+    /** VARIABLES QUESTIONS DIVIDE **/
+    private val _questionsPart1 = mutableStateOf<List<Question>>(emptyList())
+    //val questionsPart1: State<List<Question>> = _questionsPart1
+
+    private val _questionsPart2 = mutableStateOf<List<Question>>(emptyList())
+    //val questionsPart2: State<List<Question>> = _questionsPart2
+    //val questionsPart2: LiveData<Resource<List<Question>>?> = _questionsPart2
+
+    // Preguntas actuales que se muestran
+    private var _currentQuestions = mutableStateOf<List<Question>>(emptyList())
+    val currentQuestions: List<Question> get() = _currentQuestions.value
+
+    private val _currentPart = mutableStateOf(1) // 1 = Parte 1, 2 = Parte 2
+    val currentPart: State<Int> = _currentPart
+
+
+    private var _showParts = mutableStateOf(false) // Indica si mostrar botones de partes
+    var showParts: State<Boolean> = _showParts
+
+    //private val _currentQuestions = mutableStateOf<List<Question>>(emptyList())
+    //val currentQuestions: State<List<Question>> = _currentQuestions
+
 
     init {
         //getQuestions()
@@ -74,14 +98,9 @@ class QuestionViewModel @Inject constructor(
                 Log.d("QuestionViewModel", "Data Token Response: ${data.token}")
                 questionsUseCase.findByThemeUseCase(data.token, theme.id!!).collect() { // SUCCESS
 
-                    if ((it as Resource.Success).data.isEmpty()) {
-                        Log.d("QuestionViewModel", "DATA FIND EMPTY: $questionsResponse")
-                        questionsResponse = Resource.Failure("Este tema no tiene preguntas disponibles")
-                    } else {
-                        questionsResponse = it
-                        questionsResponse as Resource.Success
-                        Log.d("QuestionViewModel", "DATA FIND: $questionsResponse")
-                    }
+                    questionsResponse = it
+
+                    //loadQuestions(it)
 
                 }
             } else {
@@ -110,6 +129,10 @@ class QuestionViewModel @Inject constructor(
     //PREGUNTA ACTUAL
     fun currentQuestion(): Question? {
 
+        /*return if (questionsResponse is Resource.Success) {
+            currentQuestions[currentIndex]
+        } else null*/
+
         return if (questionsResponse is Resource.Success) {
             (questionsResponse as Resource.Success).data[currentIndex]
         } else null
@@ -121,5 +144,39 @@ class QuestionViewModel @Inject constructor(
 
     }
 
+    private fun loadQuestions(resource: Resource<List<Question>>) {
+        questionsResponse = resource
+        if (resource is Resource.Success) {
+            val allQuestions = resource.data
+            if (allQuestions.size > 100) {
+                _showParts.value = true
+                val (part1, part2) = questionsUseCase.divideQuestionsUseCase(allQuestions)
+                _questionsPart1.value = part1
+                _questionsPart2.value = part2
+                //_currentQuestions.value = part1
+                Log.d("QuestionViewModel", "Preguntas parte 1 (${part1.count()}): $part1")
+                Log.d("QuestionViewModel", "Preguntas parte 2 (${part2.count()}): $part2")
+            } else {
+                _currentQuestions.value = allQuestions
+            }
+
+        }
+    }
+
+    fun showPart(part: Int){
+        //_currentQuestions.value = if (part == 1) _questionsPart1.value else _questionsPart2.value
+        _currentPart.value = part
+        Log.d("QuestionViewModel", "ESTOY EN LA PARTE: $part")
+        if (part == 1) {
+            _currentQuestions.value = _questionsPart1.value
+        } else if (part == 2) {
+            _currentQuestions.value = _questionsPart2.value
+        }
+        /**if (part == 1) {
+            questionsResponse = (_questionsPart1.value as Resource.Success<*>).data as Resource<List<Question>>?
+        } else if (part == 2) {
+            questionsResponse = (_questionsPart2.value as Resource.Success<*>).data as Resource<List<Question>>?
+        }*/
+    }
 }
 
